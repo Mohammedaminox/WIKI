@@ -1,19 +1,51 @@
 <?php
-// categoriesController.php
-namespace App\Controllers;
+namespace App\Controllers\Admin;
 use App\Models\CategoryModel;
 
 
-class CategoriesController {
-    // Méthode pour afficher la liste des catégories
-    public function listCategories() {
-        // Inclure le modèle des catégories
-        require_once('../../Models/CategoryModel.php');
+class CategoryController {
+    private $categoryModel;
 
-        // Utiliser la fonction pour récupérer la liste des catégories
-        $categories = CategoryModel::getAllCategories();
+    public function __construct() {
+        $this->categoryModel = new CategoryModel();
+    }
 
-        // Charger la vue pour afficher la liste des catégories
-        include('../../../Views/dashboard/store.php');
+    public function index() {
+
+        $categories = $this->categoryModel->getAllCategories();
+        require(__DIR__.'/../../../Views/dashboard/category.php');
+        
+    }
+    
+    public function addCategory()
+{
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $data = ['category_name' => $_POST['category_name']];
+
+        $res = $this->categoryModel->createCategory($data);
+            header('Location: /');
+            exit();
+       
+    }
+
+}
+public function updateCategory()
+{
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $data = ['category_name' => $_POST['updateCategoryName']];
+        $id = $_POST['id'];
+        $this->categoryModel->updateCategory($data, $id);
+        header('Location: /');
+        exit();
+       
+    }
+
+}
+    public function deleteCategory() {
+        $id=$_POST['id'];
+        $this->categoryModel->deleteCategory($id);
+        header('Location: /');
     }
 }
+   
+

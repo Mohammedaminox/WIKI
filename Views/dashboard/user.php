@@ -14,9 +14,9 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="../../public/assets/css/dashboard.css">
+<link rel="stylesheet" href="assets/css/dashboard.css">
 
-	<title>My Categories</title>
+	<title>My Tags</title>
 </head>
 <style>
 
@@ -32,27 +32,27 @@
 		</a>
 		<ul class="side-menu top">
 			<li>
-				<a href="dashboard.php">
+				<a href="/">
 					<i class='bx bxs-dashboard' ></i>
-					<span class="text">Dashboard</span>
+					<span class="text"> My Categories</span>
 				</a>
 			</li>
 			<li  >
-				<a href="store.php">
+				<a href="/tags">
 					<i class='bx bxs-shopping-bag-alt' ></i>
-					<span class="text">My Categories</span>
+					<span class="text">My Tags</span>
 				</a>
 			</li>
 			<li c>
-				<a href="user_page.php">
+				<a href="/users">
 					<i class='bx bxs-doughnut-chart' ></i>
-					<span class="text">users</span>
+					<span class="text">My users</span>
 				</a>
 			</li>
 			<li lass="active">
-				<a href="vente.php">
+				<a href="/wiki">
 					<i class='bx bxs-message-dots' ></i>
-					<span class="text">Vente</span>
+					<span class="text">My wikis</span>
 				</a>
 			</li>
 			<li>
@@ -86,7 +86,7 @@
 		<!-- NAVBAR -->
 		<nav>
 			<i class='bx bx-menu' ></i>
-			<a href="#" class="nav-link">Categories</a>
+			<a href="#" class="nav-link">Users</a>
 			<form action="#">
 				<div class="form-input">
 					<input type="search" placeholder="Search...">
@@ -108,7 +108,7 @@
 		<main>
 			<div class="head-title">
 				<div class="left">
-					<h1>My Categories</h1>
+					<h1>My Users</h1>
 				</div>
 				
 			</div>
@@ -120,37 +120,28 @@
 						<div class="table-title">
 							<div class="row">
 								<div class="col-sm-5">
-									<h2>Categories <b>Management</b></h2>
-								</div>
-								<div class="col-sm-7">
-									<a href="page_add_product.php" class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
-									<a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to PDF</span></a>						
+									<h2>Users <b>List</b></h2>
 								</div>
 							</div>
 						</div>
 						<table class="table table-striped table-hover">
 							<thead>
 								<tr>
-									<th>#</th>
-									<th>Categories Name</th>						
-									<th>Date Created</th>
-
-									<th>Action</th>
+									<th>id</th>
+									<th>User Name</th>			
+									<th>Email</th>			
+									<th>Role</th>						
 								</tr>
 							</thead>
-							<tbody>
-								
+							<tbody>	
+								<?php foreach ($Users as $user): ?>
 								<tr>
-									<td>1</td>
-									<td>DOLIPRANE</td>
-									<td>12/12/2023</td>                        
-									<td>299<span> DH</span></td>
-									<td>22</td>
-									<td>
-										<a href="store.php" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-										<a href="store.php" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
-									</td>
+									<td><?php echo $user['id']; ?></td>
+									<td><?php echo $user['username']; ?></td>
+									<td><?php echo $user['email']; ?></td>
+									<td><?php echo $user['role']; ?></td>
 								</tr>
+								<?php endforeach; ?>
 							</tbody>
 						</table>
 					
